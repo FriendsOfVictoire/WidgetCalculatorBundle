@@ -1,0 +1,11 @@
+victoire_core:
+    widgets:
+        Calculator:
+            class: "Victoire\\Widget\\CalculatorBundle\\Entity\\WidgetCalculator"
+            name: Calculator
+            
+jms_translation:
+    configs:
+        victoire_calculator_bundle:
+            dirs: ["@VictoireCalculatorBundle"]
+            output_dir: "@VictoireCalculatorBundle/Resources/translations"

@@ -1,0 +1,16 @@
+services:
+    victoire_core.widget_calculator_content_resolver:
+        class: Victoire\Widget\CalculatorBundle\Resolver\WidgetCalculatorContentResolver
+        parent: victoire_widget.base_widget_content_resolver
+        tags:
+            - { name: victoire_widget.widget_content_resolver, alias: Calculator }
+
+    #alias to the entity
+    victoire.widget.calculator:
+        class: Victoire\Widget\CalculatorBundle\Entity\WidgetCalculator
+
+    #alias to the form
+    victoire.widget.form.calculator:
+        class: Victoire\Widget\CalculatorBundle\Form\WidgetCalculatorType
+        tags:
+            - { name: form.type , alias: victoire_widget_form_calculator }

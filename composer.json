@@ -1,0 +1,21 @@
+{
+    "name": "friendsofvictoire/calculator-widget",
+    "type": "symfony-bundle",
+    "description": "Create a victoire calculator widget",
+    "keywords": ["victoire", "Calculator", "widget"],
+    "homepage": "http://victoire.io",
+    "license": "MIT",
+    "author": {
+        "name": "Charlie LUCAS",
+        "email": "charlie@appventus.com"
+    },
+    "require": {
+        "php"                      : ">=5.3.3",
+        "symfony/framework-bundle" : "~2.3",
+        "victoire/victoire"        : "dev-master"    },
+    "autoload": {
+        "psr-0": { "Victoire\\Widget\\CalculatorBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Victoire/Widget/CalculatorBundle"
+}
