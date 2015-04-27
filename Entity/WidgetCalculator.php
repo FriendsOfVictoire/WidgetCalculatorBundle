@@ -3,6 +3,7 @@ namespace Victoire\Widget\CalculatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Victoire\Bundle\WidgetBundle\Entity\Widget;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * WidgetCalculator
@@ -12,20 +13,19 @@ use Victoire\Bundle\WidgetBundle\Entity\Widget;
  */
 class WidgetCalculator extends Widget
 {
-
     /**
      * @var text
-     *
-     * @ORM\Column(name="seizure", type="text")
-     */
-    protected $seizure;
-
-    /**
-     * @var text
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="algorithm", type="text")
      */
     protected $algorithm;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToMany(targetEntity="Variable", mappedBy="widgetCalculator", cascade={"remove", "persist"}, orphanRemoval=true)
+     */
+    private $variables;
 
     /**
      * To String function
@@ -37,29 +37,6 @@ class WidgetCalculator extends Widget
     public function __toString()
     {
         return 'Calculator #'.$this->id;
-    }
-
-
-    /**
-     * Set seizure
-     *
-     * @param string $seizure
-     */
-    public function setSeizure($seizure)
-    {
-        $this->seizure = $seizure;
-
-        return $this;
-    }
-
-    /**
-     * Get seizure
-     *
-     * @return string
-     */
-    public function getSeizure()
-    {
-        return $this->seizure;
     }
 
     /**
@@ -84,4 +61,46 @@ class WidgetCalculator extends Widget
         return $this->algorithm;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->variables = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add variable
+     *
+     * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
+     *
+     * @return WidgetCalculator
+     */
+    public function addVariable(\Victoire\Widget\CalculatorBundle\Entity\Variable $variable)
+    {
+        $this->variables[] = $variable;
+        $variable->setWidgetCalculator($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove variable
+     *
+     * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
+     */
+    public function removeVariable(\Victoire\Widget\CalculatorBundle\Entity\Variable $variable)
+    {
+        $this->variables->removeElement($variable);
+    }
+
+    /**
+     * Get variables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVariables()
+    {
+        return $this->variables;
+    }
 }
