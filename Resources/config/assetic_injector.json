@@ -1,0 +1,18 @@
+{
+    "require_all":
+    {
+        "stylesheets":
+        {
+            "victoire-edit":
+            [
+                "@VictoireWidgetCalculatorBundle/Resources/public/less/calculator.less"
+            ]
+        },
+        "javascripts":
+        {
+            "victoire-edit":
+            [
+                "@VictoireWidgetCalculatorBundle/Resources/public/js/jslint.js"            ]
+        }
+    }
+}
