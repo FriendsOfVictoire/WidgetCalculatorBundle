@@ -18,14 +18,28 @@ class WidgetCalculatorType extends WidgetType
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {   
-        $builder
-            ->add('seizure', null, array(
-                    'label' => 'widget_calculator.form.seizure.label'
-            ))            ->add('algorithm', null, array(
-                    'label' => 'widget_calculator.form.algorithm.label'
-            ));
+    {
         parent::buildForm($builder, $options);
+        $builder
+            ->add('algorithm', null, array(
+                    'label' => 'widget_calculator.form.algorithm.label',
+                    'required' => 'required',
+                    'attr' => array(
+                        'class'=> 'calculator-algorithm'
+                    )
+                )
+            )
+            ->add('variables', 'collection', array(
+                    'label' => 'widget_calculator.form.variables.label',
+                    'type'          => 'victoire_widget_form_calculator_variable',
+                    'required'      => false,
+                    'allow_add'     => true,
+                    'allow_delete'  => true,
+                    'by_reference'  => false,
+                    "prototype"     => true
+                )
+            )
+            ;
 
     }
 
