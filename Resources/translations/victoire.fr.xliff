@@ -89,17 +89,25 @@
         <source>widget_calculator.modal.trigger.add.label</source>
         <target state="new">Ajouter un évènement</target>
       </trans-unit>
-      <trans-unit id="10" resname="widget_calculator.modal.option.value.add.label">
+      <trans-unit id="17" resname="widget_calculator.modal.option.value.add.label">
         <source>widget_calculator.modal.option.value.add.label</source>
         <target state="new">Ajouter une option</target>
       </trans-unit>
-      <trans-unit id="10" resname="widget_calculator.modal.trigger.hide.field">
+      <trans-unit id="18" resname="widget_calculator.modal.trigger.hide.field">
         <source>widget_calculator.modal.trigger.hide.field</source>
         <target state="new">Cache le champ : </target>
       </trans-unit>
-      <trans-unit id="10" resname="widget_calculator.modal.trigger.for.value">
+      <trans-unit id="19" resname="widget_calculator.modal.trigger.for.value">
         <source>widget_calculator.modal.trigger.for.value</source>
         <target state="new"> si la valeur </target>
+      </trans-unit>
+      <trans-unit id="20" resname="widget_calculator.form.label.label">
+        <source>widget_calculator.form.label.label</source>
+        <target state="new">Titre à affiché pour le résultat</target>
+      </trans-unit>
+      <trans-unit id="21" resname="widget_calculator.form.suffix.label">
+        <source>widget_calculator.form.suffix.label</source>
+        <target state="new">Suffixe du résultat</target>
       </trans-unit>
     </body>
   </file>

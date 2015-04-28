@@ -3,6 +3,14 @@
 {% block form %}
     {{form_start(form)}}
     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                {{form_row(form.label)}}
+            </div>
+            <div class="col-md-6">
+                {{form_row(form.suffix)}}
+            </div>
+        </div>
         <ul id="calculatorVariablesHolder" data-prototype="{{ _self.widget_prototype(form.variables.vars.prototype)|e }}">
             {% for variable in form.variables %}
             {{ _self.widget_prototype(variable) }}

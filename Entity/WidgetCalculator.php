@@ -13,6 +13,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class WidgetCalculator extends Widget
 {
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string", length=255)
+     */
+    private $label;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="suffix", type="string", length=255)
+     */
+    private $suffix;
+
     /**
      * @var text
      * @Assert\NotBlank
@@ -102,5 +117,53 @@ class WidgetCalculator extends Widget
     public function getVariables()
     {
         return $this->variables;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return WidgetCalculator
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set suffix
+     *
+     * @param string $suffix
+     *
+     * @return WidgetCalculator
+     */
+    public function setSuffix($suffix)
+    {
+        $this->suffix = $suffix;
+
+        return $this;
+    }
+
+    /**
+     * Get suffix
+     *
+     * @return string
+     */
+    public function getSuffix()
+    {
+        return $this->suffix;
     }
 }

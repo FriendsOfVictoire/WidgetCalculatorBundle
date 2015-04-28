@@ -21,6 +21,15 @@ class WidgetCalculatorType extends WidgetType
     {
         parent::buildForm($builder, $options);
         $builder
+            ->add('label', null, array(
+                    'label' => 'widget_calculator.form.label.label',
+                    "required" => "required"
+                )
+            )
+            ->add('suffix', null, array(
+                    'label' => 'widget_calculator.form.suffix.label',
+                )
+            )
             ->add('algorithm', null, array(
                     'label' => 'widget_calculator.form.algorithm.label',
                     'required' => 'required',
