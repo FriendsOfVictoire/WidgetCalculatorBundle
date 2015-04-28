@@ -14,3 +14,15 @@ services:
         class: Victoire\Widget\CalculatorBundle\Form\WidgetCalculatorType
         tags:
             - { name: form.type , alias: victoire_widget_form_calculator }
+    victoire.widget.form.calculator.variables:
+        class: Victoire\Widget\CalculatorBundle\Form\VariableType
+        tags:
+            - { name: form.type , alias: victoire_widget_form_calculator_variable }
+    victoire.widget.form.calculator.choice_value:
+        class: Victoire\Widget\CalculatorBundle\Form\ChoiceValueType
+        tags:
+            - { name: form.type , alias: victoire_widget_form_calculator_choice_value }
+    victoire.widget.form.calculator.trigger:
+        class: Victoire\Widget\CalculatorBundle\Form\TriggerType
+        tags:
+            - { name: form.type , alias: victoire_widget_form_calculator_trigger }
