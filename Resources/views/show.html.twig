@@ -1,6 +1,114 @@
 {% extends 'VictoireCoreBundle:Widget:show.html.twig' %}
 
 {% block content %}
-{{ parent() }}
-{# The parent display the content variable, you can do your custom display here #}
+    <div class="calculator-container clearfix">
+        <div class="col -questions">
+            <div class="panel panel-default">
+                {% for variable in widget.variables %}
+
+
+                <div class="form-group row" id="{{widget.id}}-{{variable.name}}">
+                    <div class="col-sm-7 text-right">
+                        <label class="label-inline">
+                            {{variable.label}}
+                        </label>
+                    </div>
+                    <div class="col-sm-5">
+                        {% if variable.type is constant('TYPE_CHOICE', variable) %}
+                            {% if variable.radio %}
+                                {% for optionValue in variable.choiceValues %}
+                                    <span class="customRadio-container -calculator">
+                                        <input class="customRadio" name="calculator-{{widget.id}}-{{variable.name}}" type="radio" value="{{optionValue.value}}" id="calculator-{{widget.id}}-{{variable.name}}-{{optionValue.value}}" {% if loop.first %}checked="checked"{% endif %}>
+                                        <label for="calculator-{{widget.id}}-{{variable.name}}-{{optionValue.value}}">{{optionValue.label}}</label>
+                                    </span>
+                                {% endfor %}
+                            {% else %}
+                                <div class="customSelect -calculator">
+                                    <select class="form-control -calculator" id="calculator-{{widget.id}}-{{variable.name}}">
+                                        {% for optionValue in variable.choiceValues %}
+                                            <option value="{{optionValue.value}}">{{optionValue.label}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            {% endif %}
+                        {% else %}
+
+                            <input class="form-control -calculator" id="calculator-{{widget.id}}-{{variable.name}}" type="{{variable.type[5:]}}">
+                            {% if variable.suffix %}
+                            <label class="label-calculator">
+                                {{variable.suffix}}
+                            </label>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                {% endfor %}
+                <div class="row">
+                    <div class="col-sm-5 col-sm-push-7">
+                        <button class="btn btn-primary -calculator" id="calculator-{{widget.id}}-calculate">Calculer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col -result">
+            <div class="panel panel-default">
+                <h2 class="h4 text-center heading-calculator">Montant de l'épargne à terme :</h2>
+                <h1 class="h2 color-blue text-center strong heading-calculator"><span id="calculator-{{widget.id}}-result">0</span> €</h1>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+{% for variable in widget.variables %}
+{% if variable.type is constant('TYPE_NUMBER', variable) %}
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+{% elseif variable.type is constant('TYPE_TEXT', variable) %}
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+{% elseif variable.type is constant('TYPE_CHOICE', variable) %}
+{% if variable.isRadio %}
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('input[name=calculator-{{widget.id}}-{{variable.name}}]');
+{% else %}
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+{% endif %}
+{% endif %}
+{% if variable.triggers|length %}
+        calculator_{{widget.id}}_{{variable.name}}_elem.on('load change', function(){
+{% for trigger in variable.triggers %}
+            if($vic(this).val() {{trigger.comparisonSymbol}} {{trigger.value}} )
+            {
+                $('#{{widget.id}}-{{trigger.target}}').addClass('hidden');
+            }else{
+                $('#{{widget.id}}-{{trigger.target}}').removeClass('hidden');
+            }
+{% endfor %}
+        });
+{% endif %}
+{% endfor %}
+
+        $vic('#calculator-{{widget.id}}-calculate').on('click', function(event) {
+            event.preventDefault();
+{% for variable in widget.variables %}
+{% if variable.type is constant('TYPE_NUMBER', variable) %}
+            var calculator_{{widget.id}}_{{variable.name}} = new Number($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+{% elseif variable.type is constant('TYPE_TEXT', variable) %}
+            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+{% elseif variable.type is constant('TYPE_CHOICE', variable) %}
+{% if variable.isRadio %}
+            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('input[name=calculator-{{widget.id}}-{{variable.name}}]:checked').val());
+{% else %}
+            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+{% endif %}
+{% endif %}
+{% endfor %}
+            $vic('#calculator-{{widget.id}}-result').html(calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}calculator_{{widget.id}}_{{variable.name}}{% else %}, calculator_{{widget.id}}_{{variable.name}}{% endif %}{% endfor %})
+            );
+        });
+        function calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}{{variable.name}}{% else %}, {{variable.name}}{% endif %}{% endfor %}){
+            var result = 0;
+{{widget.algorithm|raw}}
+            return result;
+        }
+    </script>
 {% endblock content %}

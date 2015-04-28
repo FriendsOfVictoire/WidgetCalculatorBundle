@@ -1,4 +1,248 @@
 {% extends 'VictoireCoreBundle:Widget:new.html.twig' %}
+{% trans_default_domain "victoire" %}
 {% block form %}
-    {{ parent() }}
+    {{form_start(form)}}
+    <div class="container">
+        <ul id="calculatorVariablesHolder" data-prototype="{{ _self.widget_prototype(form.variables.vars.prototype)|e }}">
+            {% for variable in form.variables %}
+            {{ _self.widget_prototype(variable) }}
+            {% endfor %}
+        </ul>
+        <div>
+            {% spaceless %}
+            <span>
+                <a href="#" onclick="addVariableItem();return false;" class="add_calculator_variable_link vic-btn vic-btn-default ">
+                    <i class="fa fa-plus"></i> {{'widget_calculator.modal.variable.add.label'|trans}}
+                </a>
+            </span>
+            {% endspaceless %}
+        </div>
+        {% do form.variables.setRendered %}
+    </div>
+
+    <div id="calculator-alert-info" class="vic-alert vic-alert-info vic-alert-dismissible">
+        <strong>{{'widget_calculator.modal.help.title'|trans}}</strong><br>
+        {{'widget_calculator.modal.help.content'|trans|raw}}
+        <ul id="calculator-available-variables"></ul>
+    </div>
+    {{form_label(form.algorithm)}}
+    <i class="fa fa-check calculator-algorithm-success hidden"></i>
+    <i class="fa fa-times calculator-algorithm-error hidden"></i>
+    <a href="http://www.jslint.com/" title="">jslint</a>
+    {{form_widget(form.algorithm)}}
+    {{form_end(form)}}
+
+{% macro widget_prototype(form) %}
+<li class='vic-item calculator-item'>
+    <div class='row'>
+        <div class="col-md-4">
+            {{ form_widget(form.label, {'attr': {'placeholder': form.label.vars.label}, 'required' : true}) }}
+        </div>
+        <div class="col-md-2">
+            <div class="calculator-variable-type">
+                {{ form_widget(form.type) }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            {{ form_widget(form.suffix, {'attr': {'placeholder': form.suffix.vars.label}, 'required' : true}) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_widget(form.name, {'attr': {'placeholder': form.name.vars.label}, 'required' : true}) }}
+        </div>
+        <div class="col-md-2">
+            {% spaceless %}
+                <a onclick="deleteVariableItem(this);return false;" href="#" class="vic-btn -square -framed vic-btn-danger">
+                <i class="fa fa-trash-o"></i>
+            </a>
+            {% endspaceless %}
+            {% spaceless %}
+            <a data-toggle="collapse" href="#triggers{{ form.vars.value.id|default('__name__') }}" class="vic-btn -square -framed vic-btn-default trigger-collapse-calculator">
+                If
+            </a>
+            {% endspaceless %}
+        </div>
+    </div>
+    <div class="calculator-options-container">
+        <div class="collapse calculator-collapse {% if form.triggers|length > 0 %}in{% endif %}" id="triggers{{ form.vars.value.id|default('__name__') }}">
+          <div class="well">
+            <ul class="calculatorTriggersHolder" data-prototype="{{ _self.widget_prototype_trigger(form.triggers.vars.prototype)|e }}">
+                {% for trigger in form.triggers %}
+                    {{_self.widget_prototype_trigger(trigger)}}
+                {% endfor %}
+            </ul>
+            {% spaceless %}
+            <span>
+                <a href="#" onclick="addTriggerItem(this);return false;" class="add_calculator_option_value_link vic-btn vic-btn-default ">
+                    <i class="fa fa-plus"></i> {{'widget_calculator.modal.trigger.add.label'|trans}}
+                </a>
+            </span>
+            {% endspaceless %}
+          </div>
+        </div>
+
+        {% if form.type.vars.value is constant('Victoire\\Widget\\CalculatorBundle\\Entity\\Variable::TYPE_CHOICE') %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Options</h3>
+                    {{form_row(form.radio)}}
+                </div>
+                <div class="col-md-12">
+                    <h3>Valeurs</h3>
+                    <ul class="calculatorOptionValuesHolder" data-prototype="{{ _self.widget_prototype_option_value(form.choiceValues.vars.prototype)|e }}">
+                        {% for choiceValue in form.choiceValues %}
+                            {{_self.widget_prototype_option_value(choiceValue)}}
+                        {% endfor %}
+                    </ul>
+                    {% spaceless %}
+                    <span>
+                        <a href="#" onclick="addOptionValueItem(this);return false;" class="add_calculator_option_value_link vic-btn vic-btn-default ">
+                            <i class="fa fa-plus"></i> {{'widget_calculator.modal.option.value.add.label'|trans}}
+                        </a>
+                    </span>
+                    {% endspaceless %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</li>
+{% endmacro %}
+
+{% macro widget_prototype_option_value(form) %}
+<li class='vic-item'>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_widget(form.label, {'attr': {'placeholder': form.label.vars.label}, 'required' : true}) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_widget(form.value, {'attr': {'placeholder': form.value.vars.label}, 'required' : true}) }}
+        </div>
+
+        <div class="col-md-1">
+            {% spaceless %}
+            <a onclick="deleteOptionValueItem(this);return false;" href="#" class="vic-btn -square -framed vic-btn-danger col-md-1">
+                <i class="fa fa-trash-o"></i>
+            </a>
+            {% endspaceless %}
+        </div>
+    </div>
+</li>
+{% endmacro %}
+
+{% macro widget_prototype_trigger(form) %}
+<li class='vic-item'>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="calculator-trigger-item">
+                    {{'widget_calculator.modal.trigger.hide.field'|trans}}
+                    {{ form_widget(form.target, {'attr': {'placeholder': form.target.vars.label}, 'required' : true}) }}
+                    {{'widget_calculator.modal.trigger.for.value'|trans}}
+                    {{ form_widget(form.comparisonSymbol) }}
+                    {{ form_widget(form.value, {'attr': {'placeholder': form.value.vars.label}, 'required' : true}) }}
+            </div>
+        </div>
+        <div class= "col-md-1">
+            {% spaceless %}
+            <a onclick="deleteTriggerItem(this);return false;" href="#" class="vic-btn -square -framed vic-btn-danger col-md-1">
+                <i class="fa fa-trash-o"></i>
+            </a>
+            {% endspaceless %}
+        </div>
+    </div>
+</li>
+{% endmacro %}
+<script type="text/javascript">
+    $vic(document).ready(function() {
+        displayVariables();
+        testAlgorithm();
+        $vic('#victoire_widget_form_calculator_algorithm').on('change', function() {
+            testAlgorithm();
+        });
+    });
+
+    function addVariableItem() {
+        var collectionHolder = $vic('#calculatorVariablesHolder');
+
+        var prototype = collectionHolder.attr('data-prototype');
+
+        var newForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+        collectionHolder.append($vic(newForm));
+    }
+    function deleteVariableItem(variable) {
+        $vic(variable).parent().parent().parent('.vic-item').remove();
+        displayVariables();
+    }
+    function addOptionValueItem(addButton)
+    {
+        var collectionHolder = $vic(addButton).parent().siblings('.calculatorOptionValuesHolder');
+        var prototype = collectionHolder.attr('data-prototype');
+
+        var newForm = prototype.replace(/__name_option__/g, collectionHolder.children().length);
+        collectionHolder.append($vic(newForm));
+    }
+    function deleteOptionValueItem(optionValue) {
+        $vic(optionValue).parent().parent().parent('.vic-item').remove();
+    }
+    function addTriggerItem(addButton)
+    {
+        var collectionHolder = $vic(addButton).parent().siblings('.calculatorTriggersHolder');
+        var prototype = collectionHolder.attr('data-prototype');
+
+        var newForm = prototype.replace(/__name_trigger__/g, collectionHolder.children().length);
+        collectionHolder.append($vic(newForm));
+    }
+    function deleteTriggerItem(trigger) {
+        $vic(trigger).parent().parent().parent('.vic-item').remove();
+    }
+    function refreshCalculator(){
+        displayVariables();
+
+    }
+    function displayVariables() {
+        var variablePrototype = '<li></li>';
+        var availableVariablesHolder = $vic('#calculator-available-variables');
+        availableVariablesHolder.html('');
+        $vic('.calculator-variable-name').each(function(){
+            var variableValue = $vic(this).val();
+            if(variableValue !== 'undefined' && variableValue !== ''){
+                variableType = $vic(this).parent().parent().find('.calculator-variable-type').find(":selected").text();
+                variableInfo = variableValue + ' (' + variableType + ')';
+                newAvailableValue = $vic(variablePrototype).html(variableInfo);
+
+                availableVariablesHolder.append(newAvailableValue);
+            }
+        });
+
+    }
+    function testAlgorithm () {
+        var algorithm = $('#victoire_widget_form_calculator_algorithm').val();
+        var functionToTest = "function testAlgorithm(";
+        $vic('.calculator-variable-name').each(function(index){
+            var variableValue = $vic(this).val();
+            if(variableValue !== 'undefined' && variableValue !== ''){
+                if(index > 0){
+                    functionToTest = functionToTest.concat(', ');
+                }
+                functionToTest = functionToTest.concat(variableValue);
+            }
+        });
+        functionToTest = functionToTest.concat('){\nvar result;\n', algorithm,'\n}');
+        if(JSLINT(functionToTest, {ass: true, bitwise: true, closure: true, continue: true, debug: true, eqeq: true, plusplus: true, unparam: true, sloppy: true, vars: true, white: true}))
+        {
+            $vic('.calculator-algorithm-success').removeClass('hidden');
+            $vic('.calculator-algorithm-error').addClass('hidden');
+        }else{
+            $vic('.calculator-algorithm-error').removeClass('hidden');
+            $vic('.calculator-algorithm-success').addClass('hidden');
+        }
+    }
+</script>
+<style type="text/css" media="screen">
+#calculatorVariablesHolder{
+    list-style: none;
+}
+#calculatorVariablesHolder .vic-item{
+    margin-bottom: 10px;
+}
+
+</style>
 {% endblock form %}
