@@ -8,11 +8,11 @@
     <body>
       <trans-unit id="1" resname="widget.calculator.new.action.label">
         <source>widget.calculator.new.action.label</source>
-        <target state="new">Calculator</target>
+        <target state="new">Calculateur</target>
       </trans-unit>
       <trans-unit id="2" resname="modal.form.widget.type.calculator.label">
         <source>modal.form.widget.type.calculator.label</source>
-        <target state="new">Calculator</target>
+        <target state="new">Calculateur</target>
       </trans-unit>
       <trans-unit id="3" resname="widget_calculator.form.seizure.label">
         <source>widget_calculator.form.seizure.label</source>
@@ -20,7 +20,86 @@
       </trans-unit>
       <trans-unit id="4" resname="widget_calculator.form.algorithm.label">
         <source>widget_calculator.form.algorithm.label</source>
-        <target state="new">algorithm</target>
+        <target state="new">Algorithme</target>
+      </trans-unit>
+      <trans-unit id="5" resname="widget_calculator.form.variable.label.label">
+        <source>widget_calculator.form.variable.label.label</source>
+        <target state="new">Label du champ</target>
+      </trans-unit>
+      <trans-unit id="5" resname="widget_calculator.form.variable.suffix.label">
+        <source>widget_calculator.form.variable.suffix.label</source>
+        <target state="new">Suffixe</target>
+      </trans-unit>
+      <trans-unit id="500" resname="widget_calculator.form.variable.radio.label">
+        <source>widget_calculator.form.variable.radio.label</source>
+        <target state="new">Case à cocher</target>
+      </trans-unit>
+      <trans-unit id="6" resname="widget_calculator.form.variable.choice.type_number.label">
+        <source>widget_calculator.form.variable.choice.type_number.label</source>
+        <target state="new">Nombre</target>
+      </trans-unit>
+      <trans-unit id="7" resname="widget_calculator.form.variable.choice.type_text.label">
+        <source>widget_calculator.form.variable.choice.type_text.label</source>
+        <target state="new">Chaîne de caractères</target>
+      </trans-unit>
+      <trans-unit id="8" resname="widget_calculator.form.variable.choice.type_choice.label">
+        <source>widget_calculator.form.variable.choice.type_choice.label</source>
+        <target state="new">Liste de choix</target>
+      </trans-unit>
+      <trans-unit id="9" resname="widget_calculator.form.variable.name.label">
+        <source>widget_calculator.form.variable.name.label</source>
+        <target state="new">Nom de la variable</target>
+      </trans-unit>
+      <trans-unit id="10" resname="widget_calculator.form.algorithm.label">
+        <source>widget_calculator.form.algorithm.label</source>
+        <target state="new">Algorithme</target>
+      </trans-unit>
+      <trans-unit id="9" resname="widget_calculator.form.option.value.label.label">
+        <source>widget_calculator.form.option.value.label.label</source>
+        <target state="new">Nom de l'option</target>
+      </trans-unit>
+      <trans-unit id="10" resname="widget_calculator.form.option.value.value.label">
+        <source>widget_calculator.form.option.value.value.label</source>
+        <target state="new">Valeur de l'option</target>
+      </trans-unit>
+      <trans-unit id="11" resname="widget_calculator.form.trigger.value.label">
+        <source>widget_calculator.form.trigger.value.label</source>
+        <target state="new">Valeur de la variable</target>
+      </trans-unit>
+      <trans-unit id="12" resname="widget_calculator.form.trigger.target.label">
+        <source>widget_calculator.form.trigger.target.label</source>
+        <target state="new">Nom de la cible</target>
+      </trans-unit>
+      <trans-unit id="13" resname="widget_calculator.modal.variable.add.label">
+        <source>widget_calculator.modal.variable.add.label</source>
+        <target state="new">Ajouter un champ</target>
+      </trans-unit>
+      <trans-unit id="14" resname="widget_calculator.modal.help.title">
+        <source>widget_calculator.modal.help.title</source>
+        <target state="new">Informations :</target>
+      </trans-unit>
+      <trans-unit id="15" resname="widget_calculator.modal.help.content">
+        <source>widget_calculator.modal.help.content</source>
+        <target state="new">
+        <![CDATA[L'algorithme est interprété en javascript avec vos variables donc assurez-vous d'avoir un algorithme fonctionnel.<br>
+        La variable affichée est "result".<br>
+        Liste des variables disponibles:<br>]]></target>
+      </trans-unit>
+      <trans-unit id="16" resname="widget_calculator.modal.trigger.add.label">
+        <source>widget_calculator.modal.trigger.add.label</source>
+        <target state="new">Ajouter un évènement</target>
+      </trans-unit>
+      <trans-unit id="10" resname="widget_calculator.modal.option.value.add.label">
+        <source>widget_calculator.modal.option.value.add.label</source>
+        <target state="new">Ajouter une option</target>
+      </trans-unit>
+      <trans-unit id="10" resname="widget_calculator.modal.trigger.hide.field">
+        <source>widget_calculator.modal.trigger.hide.field</source>
+        <target state="new">Cache le champ : </target>
+      </trans-unit>
+      <trans-unit id="10" resname="widget_calculator.modal.trigger.for.value">
+        <source>widget_calculator.modal.trigger.for.value</source>
+        <target state="new"> si la valeur </target>
       </trans-unit>
     </body>
   </file>
