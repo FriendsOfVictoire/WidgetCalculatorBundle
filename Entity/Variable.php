@@ -35,7 +35,7 @@ class Variable
     /**
      * @var string
      *
-     * @ORM\Column(name="suffix", type="string", length=255)
+     * @ORM\Column(name="suffix", type="string", length=255, nullable=true)
      */
     private $suffix;
 
