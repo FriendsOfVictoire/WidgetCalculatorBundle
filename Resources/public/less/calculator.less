@@ -4,6 +4,10 @@
         width: 150px;
         display: inline-block;
 
+        @media (max-width: 767px) {
+            .calc(width, ~'100% - 60px')
+        }
+
         + * {
             margin-left: 10px;
         }
@@ -18,11 +22,27 @@
     }
 }
 
+.btn {
+    &.-calculator {
+        width: 100%;
+    }
+}
+
 .customSelect {
     &.-calculator {
         width: 150px;
         display: inline-block;
         float: left;
+
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+
+        .form-control {
+            @media (max-width: 767px) {
+                width: 120%;
+            }
+        }
 
         + .label-calculator {
             float: left;
@@ -85,6 +105,10 @@
             float: left;
             width: 60%;
 
+            @media (max-width: 1199px) {
+                width: 67%;
+            }
+
             @media (max-width: 991px) {
                 width: 100%;
                 float: none;
@@ -92,6 +116,10 @@
 
             .panel {
                 padding: 35px;
+
+                @media (max-width: 767px) {
+                    padding: 15px;
+                }
             }
         }
 
@@ -102,6 +130,10 @@
             top: 50%;
             .transform(translateY(-50%));
 
+            @media (max-width: 1199px) {
+                width: 33%;
+            }
+
             @media (max-width: 991px) {
                 width: 100%;
                 position: static;
@@ -111,6 +143,10 @@
 
             .panel {
                 padding: 50px;
+
+                @media (max-width: 1199px) {
+                    padding: 30px;
+                }
             }
         }
     }
@@ -155,4 +191,10 @@ li.vic-item.calculator-item {
 }
 #calculatorVariablesHolder{
       padding-left: 0px;
+}
+
+@media (min-width: 768px) {
+    .text-sm-right {
+        text-align: right;
+    }
 }
