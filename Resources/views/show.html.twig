@@ -108,7 +108,7 @@
         function calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}{{variable.name}}{% else %}, {{variable.name}}{% endif %}{% endfor %}){
             var result = 0;
 {{widget.algorithm|raw}}
-            return result;
+            return Math.round(result * 100) / 100;
         }
     </script>
 {% endblock content %}
