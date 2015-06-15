@@ -1,12 +1,12 @@
 @import "vendor/victoire/victoire/Bundle/CoreBundle/Resources/style/less/parameters/parameters.less";
 .form-control {
     &.-calculator {
-        width: 150px;
+        width: 100%;
         display: inline-block;
 
-        @media (max-width: 767px) {
-            .calc(width, ~'100% - 60px')
-        }
+        //@media (max-width: 767px) {
+            //.calc(width, ~'100% - 60px')
+        //}
 
         + * {
             margin-left: 10px;
@@ -30,7 +30,7 @@
 
 .customSelect {
     &.-calculator {
-        width: 150px;
+        width: 100%;
         display: inline-block;
         float: left;
 
