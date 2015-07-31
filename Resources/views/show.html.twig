@@ -63,20 +63,20 @@
     <script type="text/javascript">
 {% for variable in widget.variables %}
 {% if variable.type is constant('TYPE_NUMBER', variable) %}
-        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $('#calculator-{{widget.id}}-{{variable.name}}');
 {% elseif variable.type is constant('TYPE_TEXT', variable) %}
-        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $('#calculator-{{widget.id}}-{{variable.name}}');
 {% elseif variable.type is constant('TYPE_CHOICE', variable) %}
 {% if variable.isRadio %}
-        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('input[name=calculator-{{widget.id}}-{{variable.name}}]');
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $('input[name=calculator-{{widget.id}}-{{variable.name}}]');
 {% else %}
-        var calculator_{{widget.id}}_{{variable.name}}_elem = $vic('#calculator-{{widget.id}}-{{variable.name}}');
+        var calculator_{{widget.id}}_{{variable.name}}_elem = $('#calculator-{{widget.id}}-{{variable.name}}');
 {% endif %}
 {% endif %}
 {% if variable.triggers|length %}
         calculator_{{widget.id}}_{{variable.name}}_elem.on('load change', function(){
 {% for trigger in variable.triggers %}
-            if($vic(this).val() {{trigger.comparisonSymbol}} {{trigger.value}} )
+            if($(this).val() {{trigger.comparisonSymbol}} {{trigger.value}} )
             {
                 $('#{{widget.id}}-{{trigger.target}}').addClass('hidden');
             }else{
@@ -87,22 +87,22 @@
 {% endif %}
 {% endfor %}
 
-        $vic('#calculator-{{widget.id}}-calculate').on('click', function(event) {
+        $('#calculator-{{widget.id}}-calculate').on('click', function(event) {
             event.preventDefault();
 {% for variable in widget.variables %}
 {% if variable.type is constant('TYPE_NUMBER', variable) %}
-            var calculator_{{widget.id}}_{{variable.name}} = new Number($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+            var calculator_{{widget.id}}_{{variable.name}} = new Number($('#calculator-{{widget.id}}-{{variable.name}}').val());
 {% elseif variable.type is constant('TYPE_TEXT', variable) %}
-            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+            var calculator_{{widget.id}}_{{variable.name}} = new String($('#calculator-{{widget.id}}-{{variable.name}}').val());
 {% elseif variable.type is constant('TYPE_CHOICE', variable) %}
 {% if variable.isRadio %}
-            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('input[name=calculator-{{widget.id}}-{{variable.name}}]:checked').val());
+            var calculator_{{widget.id}}_{{variable.name}} = new String($('input[name=calculator-{{widget.id}}-{{variable.name}}]:checked').val());
 {% else %}
-            var calculator_{{widget.id}}_{{variable.name}} = new String($vic('#calculator-{{widget.id}}-{{variable.name}}').val());
+            var calculator_{{widget.id}}_{{variable.name}} = new String($('#calculator-{{widget.id}}-{{variable.name}}').val());
 {% endif %}
 {% endif %}
 {% endfor %}
-            $vic('#calculator-{{widget.id}}-result').html(calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}calculator_{{widget.id}}_{{variable.name}}{% else %}, calculator_{{widget.id}}_{{variable.name}}{% endif %}{% endfor %})
+            $('#calculator-{{widget.id}}-result').html(calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}calculator_{{widget.id}}_{{variable.name}}{% else %}, calculator_{{widget.id}}_{{variable.name}}{% endif %}{% endfor %})
             );
         });
         function calculatorWidget{{widget.id}}({% for variable in widget.variables %}{% if loop.first %}{{variable.name}}{% else %}, {{variable.name}}{% endif %}{% endfor %}){

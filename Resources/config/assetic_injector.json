@@ -3,14 +3,14 @@
     {
         "stylesheets":
         {
-            "victoire-edit":
+            "head":
             [
                 "@VictoireWidgetCalculatorBundle/Resources/public/less/calculator.less"
             ]
         },
         "javascripts":
         {
-            "victoire-edit":
+            "head":
             [
                 "@VictoireWidgetCalculatorBundle/Resources/public/js/jslint.js"            ]
         }
