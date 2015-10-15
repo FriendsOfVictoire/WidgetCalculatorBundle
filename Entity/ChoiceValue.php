@@ -5,7 +5,7 @@ namespace Victoire\Widget\CalculatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ChoiceValue
+ * ChoiceValue.
  *
  * @ORM\Table("vic_widget_calculator_choice_value")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ChoiceValue
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -43,9 +43,9 @@ class ChoiceValue
     private $variable;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -53,7 +53,7 @@ class ChoiceValue
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
      *
@@ -67,7 +67,7 @@ class ChoiceValue
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class ChoiceValue
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
      *
@@ -91,7 +91,7 @@ class ChoiceValue
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return string
      */
@@ -101,7 +101,7 @@ class ChoiceValue
     }
 
     /**
-     * Set variable
+     * Set variable.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
      *
@@ -115,7 +115,7 @@ class ChoiceValue
     }
 
     /**
-     * Get variable
+     * Get variable.
      *
      * @return \Victoire\Widget\CalculatorBundle\Entity\Variable
      */
