@@ -5,19 +5,19 @@ namespace Victoire\Widget\CalculatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Variable
+ * Variable.
  *
  * @ORM\Table("vic_widget_calculator_variable")
  * @ORM\Entity
  */
 class Variable
 {
-    const TYPE_TEXT      = "type_text";
-    const TYPE_NUMBER   = "type_number";
-    const TYPE_CHOICE    = "type_choice";
+    const TYPE_TEXT = 'type_text';
+    const TYPE_NUMBER = 'type_number';
+    const TYPE_CHOICE = 'type_choice';
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -68,12 +68,11 @@ class Variable
     private $triggers;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="radio", type="boolean", nullable=true)
      */
     private $radio;
-
 
     /**
      * @var string
@@ -81,8 +80,9 @@ class Variable
      * @ORM\ManyToOne(targetEntity="WidgetCalculator", inversedBy="variables")
      */
     private $widgetCalculator;
+
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -91,9 +91,9 @@ class Variable
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -101,7 +101,7 @@ class Variable
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
      *
@@ -115,7 +115,7 @@ class Variable
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -125,7 +125,7 @@ class Variable
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
      *
@@ -139,7 +139,7 @@ class Variable
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return string
      */
@@ -149,7 +149,7 @@ class Variable
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -163,7 +163,7 @@ class Variable
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -173,7 +173,7 @@ class Variable
     }
 
     /**
-     * Add choiceValue
+     * Add choiceValue.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\ChoiceValue $choiceValue
      *
@@ -190,7 +190,7 @@ class Variable
     }
 
     /**
-     * Remove choiceValue
+     * Remove choiceValue.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\ChoiceValue $choiceValue
      */
@@ -200,7 +200,7 @@ class Variable
     }
 
     /**
-     * Get choiceValues
+     * Get choiceValues.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -210,7 +210,7 @@ class Variable
     }
 
     /**
-     * Set widgetCalculator
+     * Set widgetCalculator.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\WidgetCalculator $widgetCalculator
      *
@@ -224,7 +224,7 @@ class Variable
     }
 
     /**
-     * Get widgetCalculator
+     * Get widgetCalculator.
      *
      * @return \Victoire\Widget\CalculatorBundle\Entity\WidgetCalculator
      */
@@ -234,9 +234,9 @@ class Variable
     }
 
     /**
-     * Set radio
+     * Set radio.
      *
-     * @param boolean $radio
+     * @param bool $radio
      *
      * @return Variable
      */
@@ -248,9 +248,9 @@ class Variable
     }
 
     /**
-     * Get radio
+     * Get radio.
      *
-     * @return boolean
+     * @return bool
      */
     public function isRadio()
     {
@@ -258,7 +258,7 @@ class Variable
     }
 
     /**
-     * Set suffix
+     * Set suffix.
      *
      * @param string $suffix
      *
@@ -272,7 +272,7 @@ class Variable
     }
 
     /**
-     * Get suffix
+     * Get suffix.
      *
      * @return string
      */
@@ -282,9 +282,9 @@ class Variable
     }
 
     /**
-     * Get radio
+     * Get radio.
      *
-     * @return boolean
+     * @return bool
      */
     public function getRadio()
     {
@@ -292,7 +292,7 @@ class Variable
     }
 
     /**
-     * Add trigger
+     * Add trigger.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Trigger $trigger
      *
@@ -305,12 +305,11 @@ class Variable
             $trigger->setVariable($this);
         }
 
-
         return $this;
     }
 
     /**
-     * Remove trigger
+     * Remove trigger.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Trigger $trigger
      */
@@ -320,7 +319,7 @@ class Variable
     }
 
     /**
-     * Get triggers
+     * Get triggers.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

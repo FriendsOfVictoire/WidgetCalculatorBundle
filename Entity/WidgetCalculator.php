@@ -1,19 +1,19 @@
 <?php
+
 namespace Victoire\Widget\CalculatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Victoire\Bundle\WidgetBundle\Entity\Widget;
 use Symfony\Component\Validator\Constraints as Assert;
+use Victoire\Bundle\WidgetBundle\Entity\Widget;
 
 /**
- * WidgetCalculator
+ * WidgetCalculator.
  *
  * @ORM\Table("vic_widget_calculator")
  * @ORM\Entity
  */
 class WidgetCalculator extends Widget
 {
-
     /**
      * @var string
      *
@@ -45,9 +45,9 @@ class WidgetCalculator extends Widget
     /**
      * To String function
      * Used in render choices type (Especially in VictoireWidgetRenderBundle)
-     * //TODO Check the generated value and make it more consistent
+     * //TODO Check the generated value and make it more consistent.
      *
-     * @return String
+     * @return string
      */
     public function __toString()
     {
@@ -55,7 +55,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Set algorithm
+     * Set algorithm.
      *
      * @param string $algorithm
      */
@@ -67,7 +67,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Get algorithm
+     * Get algorithm.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -85,7 +85,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Add variable
+     * Add variable.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
      *
@@ -100,7 +100,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Remove variable
+     * Remove variable.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
      */
@@ -110,7 +110,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Get variables
+     * Get variables.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -120,7 +120,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Set label
+     * Set label.
      *
      * @param string $label
      *
@@ -134,7 +134,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Get label
+     * Get label.
      *
      * @return string
      */
@@ -144,7 +144,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Set suffix
+     * Set suffix.
      *
      * @param string $suffix
      *
@@ -158,7 +158,7 @@ class WidgetCalculator extends Widget
     }
 
     /**
-     * Get suffix
+     * Get suffix.
      *
      * @return string
      */

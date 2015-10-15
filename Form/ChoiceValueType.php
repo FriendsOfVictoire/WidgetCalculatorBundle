@@ -2,49 +2,48 @@
 
 namespace Victoire\Widget\CalculatorBundle\Form;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\AbstractType;
-use Victoire\Widget\CalculatorBundle\Entity\Variable;
 
 /**
- * Edit ChoiceValue Type
+ * Edit ChoiceValue Type.
  */
 class ChoiceValueType extends AbstractType
 {
-
     /**
-     * define form fields
+     * define form fields.
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('label', null, array(
-                    'label' => 'widget_calculator.form.option.value.label.label'
-                )
+            ->add('label', null, [
+                    'label' => 'widget_calculator.form.option.value.label.label',
+                ]
             )
-            ->add('value', null, array(
-                    'label' => 'widget_calculator.form.option.value.value.label'
-                )
-            )
-            ;
+            ->add('value', null, [
+                    'label' => 'widget_calculator.form.option.value.value.label',
+                ]
+            );
     }
 
     /**
-     * bind to choiceValue entity
+     * bind to choiceValue entity.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Victoire\Widget\CalculatorBundle\Entity\choiceValue',
-        ));
+        ]);
     }
 
     /**
-     * get form name
+     * get form name.
      */
     public function getName()
     {

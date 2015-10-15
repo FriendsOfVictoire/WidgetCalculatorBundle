@@ -5,21 +5,21 @@ namespace Victoire\Widget\CalculatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Trigger
+ * Trigger.
  *
  * @ORM\Table("vic_widget_calculator_trigger")
  * @ORM\Entity
  */
 class Trigger
 {
-    const COMPARISON_EQUAL_TO = "==";
-    const COMPARISON_GREATER_THAN = ">";
-    const COMPARISON_LESS_THAN = "<";
-    const COMPARISON_DIFFERENT_TO = "!=";
-    const COMPARISON_GREATER_OR_EQUAL_TO = ">=";
-    const COMPARISON_LESS_OR_EQUAL_TO = "<=";
+    const COMPARISON_EQUAL_TO = '==';
+    const COMPARISON_GREATER_THAN = '>';
+    const COMPARISON_LESS_THAN = '<';
+    const COMPARISON_DIFFERENT_TO = '!=';
+    const COMPARISON_GREATER_OR_EQUAL_TO = '>=';
+    const COMPARISON_LESS_OR_EQUAL_TO = '<=';
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -55,14 +55,15 @@ class Trigger
      */
     private $variable;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->comparisonSymbol = $this::COMPARISON_EQUAL_TO;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,7 +71,7 @@ class Trigger
     }
 
     /**
-     * Set target
+     * Set target.
      *
      * @param string $target
      *
@@ -84,7 +85,7 @@ class Trigger
     }
 
     /**
-     * Get target
+     * Get target.
      *
      * @return string
      */
@@ -94,7 +95,7 @@ class Trigger
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
      *
@@ -108,7 +109,7 @@ class Trigger
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return string
      */
@@ -118,7 +119,7 @@ class Trigger
     }
 
     /**
-     * Set variable
+     * Set variable.
      *
      * @param \Victoire\Widget\CalculatorBundle\Entity\Variable $variable
      *
@@ -132,7 +133,7 @@ class Trigger
     }
 
     /**
-     * Get variable
+     * Get variable.
      *
      * @return \Victoire\Widget\CalculatorBundle\Entity\Variable
      */
@@ -142,7 +143,7 @@ class Trigger
     }
 
     /**
-     * Set comparisonSymbol
+     * Set comparisonSymbol.
      *
      * @param string $comparisonSymbol
      *
@@ -156,7 +157,7 @@ class Trigger
     }
 
     /**
-     * Get comparisonSymbol
+     * Get comparisonSymbol.
      *
      * @return string
      */

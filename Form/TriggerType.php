@@ -2,62 +2,62 @@
 
 namespace Victoire\Widget\CalculatorBundle\Form;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\AbstractType;
 use Victoire\Widget\CalculatorBundle\Entity\Trigger;
 
 /**
- * Edit Trigger Type
+ * Edit Trigger Type.
  */
 class TriggerType extends AbstractType
 {
-
     /**
-     * define form fields
+     * define form fields.
+     *
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('target', null, array(
-                    'label' => 'widget_calculator.form.trigger.target.label'
-                )
+            ->add('target', null, [
+                    'label' => 'widget_calculator.form.trigger.target.label',
+                ]
             )
-            ->add('value', null, array(
-                    'label' => 'widget_calculator.form.trigger.value.label'
-                )
+            ->add('value', null, [
+                    'label' => 'widget_calculator.form.trigger.value.label',
+                ]
             )
-            ->add('comparisonSymbol', 'choice', array(
-                    'label' => false,
-                    "choices" => array(
-                        Trigger::COMPARISON_EQUAL_TO => Trigger::COMPARISON_EQUAL_TO,
-                        Trigger::COMPARISON_GREATER_THAN => Trigger::COMPARISON_GREATER_THAN,
-                        Trigger::COMPARISON_LESS_THAN => Trigger::COMPARISON_LESS_THAN,
-                        Trigger::COMPARISON_DIFFERENT_TO => Trigger::COMPARISON_DIFFERENT_TO,
+            ->add('comparisonSymbol', 'choice', [
+                    'label'   => false,
+                    'choices' => [
+                        Trigger::COMPARISON_EQUAL_TO            => Trigger::COMPARISON_EQUAL_TO,
+                        Trigger::COMPARISON_GREATER_THAN        => Trigger::COMPARISON_GREATER_THAN,
+                        Trigger::COMPARISON_LESS_THAN           => Trigger::COMPARISON_LESS_THAN,
+                        Trigger::COMPARISON_DIFFERENT_TO        => Trigger::COMPARISON_DIFFERENT_TO,
                         Trigger::COMPARISON_GREATER_OR_EQUAL_TO => Trigger::COMPARISON_GREATER_OR_EQUAL_TO,
-                        Trigger::COMPARISON_LESS_OR_EQUAL_TO => Trigger::COMPARISON_LESS_OR_EQUAL_TO,
-                    ),
-                    "required" => 'required',
-                )
-            )
-            ;
+                        Trigger::COMPARISON_LESS_OR_EQUAL_TO    => Trigger::COMPARISON_LESS_OR_EQUAL_TO,
+                    ],
+                    'required' => 'required',
+                ]
+            );
     }
 
     /**
-     * bind to Trigger entity
+     * bind to Trigger entity.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Victoire\Widget\CalculatorBundle\Entity\Trigger',
-        ));
+        ]);
     }
 
     /**
-     * get form name
+     * get form name.
      */
     public function getName()
     {

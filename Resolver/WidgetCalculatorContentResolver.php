@@ -2,12 +2,11 @@
 
 namespace Victoire\Widget\CalculatorBundle\Resolver;
 
-
 use Victoire\Bundle\WidgetBundle\Model\Widget;
 use Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver;
 
 /**
- * CRUD operations on WidgetCalculator Widget
+ * CRUD operations on WidgetCalculator Widget.
  *
  * The widget view has two parameters: widget and content
  *
@@ -32,9 +31,10 @@ use Victoire\Bundle\WidgetBundle\Resolver\BaseWidgetContentResolver;
 class WidgetCalculatorContentResolver extends BaseWidgetContentResolver
 {
     /**
-     * Get the static content of the widget
+     * Get the static content of the widget.
      *
      * @param Widget $widget
+     *
      * @return string The static content
      */
     public function getWidgetStaticContent(Widget $widget)
@@ -43,8 +43,10 @@ class WidgetCalculatorContentResolver extends BaseWidgetContentResolver
     }
 
     /**
-     * Get the business entity content
+     * Get the business entity content.
+     *
      * @param Widget $widget
+     *
      * @return string
      */
     public function getWidgetBusinessEntityContent(Widget $widget)
@@ -53,7 +55,7 @@ class WidgetCalculatorContentResolver extends BaseWidgetContentResolver
     }
 
     /**
-     * Get the content of the widget by the entity linked to it
+     * Get the content of the widget by the entity linked to it.
      *
      * @param Widget $widget
      *
@@ -65,9 +67,10 @@ class WidgetCalculatorContentResolver extends BaseWidgetContentResolver
     }
 
     /**
-     * Get the content of the widget for the query mode
+     * Get the content of the widget for the query mode.
      *
      * @param Widget $widget
+     *
      * @throws \Exception
      */
     public function getWidgetQueryContent(Widget $widget)
@@ -75,4 +78,3 @@ class WidgetCalculatorContentResolver extends BaseWidgetContentResolver
         return parent::getWidgetQueryContent($widget);
     }
 }
-
