@@ -1,18 +1,19 @@
 {
     "name": "friendsofvictoire/calculator-widget",
     "type": "symfony-bundle",
-    "description": "Create a victoire calculator widget",
-    "keywords": ["victoire", "Calculator", "widget"],
+    "description": "Victoire DCMS calculator widget",
+    "keywords": ["DCMS", "Victoire", "widget", "FriendsofVictoire", "FoV", "Dynamic", "CMS", "calculator"],
     "homepage": "http://victoire.io",
     "license": "MIT",
     "author": {
         "name": "Charlie LUCAS",
-        "email": "charlie@appventus.com"
+        "email": "charlie@victoire.io"
     },
     "require": {
         "php"                      : ">=5.3.3",
         "symfony/framework-bundle" : "~2.3",
-        "victoire/victoire"        : "dev-master"    },
+        "victoire/victoire"        : "~1.3.0"
+    },
     "autoload": {
         "psr-0": { "Victoire\\Widget\\CalculatorBundle": "" }
     },
