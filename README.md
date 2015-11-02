@@ -1,16 +1,25 @@
-Victoire CMS Calculator Bundle
+Victoire DCMS Calculator Bundle
 ============
 
-Need to add a calculator in a victoire cms website ?
+##What is the purpose of this bundle
 
-First you need to have a valid Symfony2 Victoire edition.
-Then you just have to run the following composer command :
+This bundle gives you access to the *Calculator Widget*.
+With this widget, you can define the parameters and the calcul method to give live results to the user.
 
-    php composer.phar require victoire/calculator-widget
+##Set Up Victoire
+
+If you haven't already, you can follow the steps to set up Victoire *[here](https://github.com/Victoire/victoire/blob/master/setup.md)*
+
+##Install the Bundle
+
+Run the following composer command :
+
+    php composer.phar require friendsofvictoire/calculator-widget
+
+###Reminder
 
 Do not forget to add the bundle in your AppKernel !
 
-```php
     class AppKernel extends Kernel
     {
         public function registerBundles()
@@ -23,5 +32,5 @@ Do not forget to add the bundle in your AppKernel !
             return $bundles;
         }
     }
-```
+
 
