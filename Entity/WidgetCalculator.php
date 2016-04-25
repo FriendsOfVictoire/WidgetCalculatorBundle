@@ -81,6 +81,7 @@ class WidgetCalculator extends Widget
      */
     public function __construct()
     {
+        parent::__construct();
         $this->variables = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

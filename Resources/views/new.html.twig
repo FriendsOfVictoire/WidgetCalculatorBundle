@@ -19,7 +19,7 @@
         <div>
             {% spaceless %}
             <span>
-                <a href="#" onclick="addVariableItem();return false;" class="add_calculator_variable_link vic-btn vic-btn-default ">
+                <a href="#" onclick="addVariableItem('{{ form.vars.full_name }}');return false;" class="add_calculator_variable_link vic-btn vic-btn-default ">
                     <i class="fa fa-plus"></i> {{'widget_calculator.modal.variable.add.label'|trans}}
                 </a>
             </span>
@@ -167,8 +167,8 @@
         });
     });
 
-    function addVariableItem() {
-        var collectionHolder = $vic('#calculatorVariablesHolder');
+    function addVariableItem(formName) {
+        var collectionHolder = $vic('form[name="'+formName+'"] #calculatorVariablesHolder');
 
         var prototype = collectionHolder.attr('data-prototype');
 
