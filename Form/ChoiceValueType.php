@@ -4,7 +4,8 @@ namespace Victoire\Widget\CalculatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Victoire\Widget\CalculatorBundle\Entity\ChoiceValue;
 
 /**
  * Edit ChoiceValue Type.
@@ -33,20 +34,12 @@ class ChoiceValueType extends AbstractType
     /**
      * bind to choiceValue entity.
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Victoire\Widget\CalculatorBundle\Entity\choiceValue',
+            'data_class' => ChoiceValue::class,
         ]);
-    }
-
-    /**
-     * get form name.
-     */
-    public function getName()
-    {
-        return 'victoire_widget_form_calculator_choice_value';
     }
 }

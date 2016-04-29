@@ -3,7 +3,9 @@
 namespace Victoire\Widget\CalculatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Victoire\Widget\CalculatorBundle\Entity\Trigger;
 
@@ -29,7 +31,7 @@ class TriggerType extends AbstractType
                     'label' => 'widget_calculator.form.trigger.value.label',
                 ]
             )
-            ->add('comparisonSymbol', 'choice', [
+            ->add('comparisonSymbol', ChoiceType::class, [
                     'label'   => false,
                     'choices' => [
                         Trigger::COMPARISON_EQUAL_TO            => Trigger::COMPARISON_EQUAL_TO,
@@ -40,6 +42,7 @@ class TriggerType extends AbstractType
                         Trigger::COMPARISON_LESS_OR_EQUAL_TO    => Trigger::COMPARISON_LESS_OR_EQUAL_TO,
                     ],
                     'required' => 'required',
+                    'choices_as_values' => true
                 ]
             );
     }
@@ -47,20 +50,12 @@ class TriggerType extends AbstractType
     /**
      * bind to Trigger entity.
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Victoire\Widget\CalculatorBundle\Entity\Trigger',
+            'data_class' => Trigger::class,
         ]);
-    }
-
-    /**
-     * get form name.
-     */
-    public function getName()
-    {
-        return 'victoire_widget_form_calculator_trigger';
     }
 }

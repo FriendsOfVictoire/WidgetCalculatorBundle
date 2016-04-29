@@ -11,14 +11,14 @@
     ],
     "homepage": "http://victoire.io",
     "license": "MIT",
-    "author": {
+    "authors": [{
         "name" : "Charlie LUCAS",
         "email": "charlie@victoire.io"
-    },
+    }],
     "require": {
         "php"                     : ">=5.3.3",
-        "symfony/framework-bundle": "~2.3",
-        "victoire/victoire"       : "~1.3"
+        "symfony/framework-bundle": "~2.8",
+        "victoire/victoire"       : "~1.5"
     },
     "autoload": {
         "psr-0": {
@@ -29,7 +29,7 @@
     "target-dir"       : "Victoire/Widget/CalculatorBundle",
     "extra"            : {
         "branch-alias": {
-            "dev-master": "1.3.x-dev"
+            "dev-master": "1.5.x-dev"
         }
     }
 }

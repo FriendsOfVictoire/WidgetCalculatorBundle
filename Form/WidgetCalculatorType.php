@@ -2,9 +2,11 @@
 
 namespace Victoire\Widget\CalculatorBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Victoire\Bundle\CoreBundle\Form\WidgetType;
+use Victoire\Widget\CalculatorBundle\Entity\WidgetCalculator;
 
 /**
  * WidgetCalculator form type.
@@ -39,9 +41,9 @@ class WidgetCalculatorType extends WidgetType
                     ],
                 ]
             )
-            ->add('variables', 'collection', [
+            ->add('variables', CollectionType::class, [
                     'label'         => 'widget_calculator.form.variables.label',
-                    'type'          => 'victoire_widget_form_calculator_variable',
+                    'entry_type'    => VariableType::class,
                     'required'      => false,
                     'allow_add'     => true,
                     'allow_delete'  => true,
@@ -54,26 +56,16 @@ class WidgetCalculatorType extends WidgetType
     /**
      * bind form to WidgetCalculator entity.
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'data_class'         => 'Victoire\Widget\CalculatorBundle\Entity\WidgetCalculator',
+            'data_class'         => WidgetCalculator::class,
             'widget'             => 'Calculator',
             'translation_domain' => 'victoire',
         ]);
-    }
-
-    /**
-     * get form name.
-     *
-     * @return string The form name
-     */
-    public function getName()
-    {
-        return 'victoire_widget_form_calculator';
     }
 }

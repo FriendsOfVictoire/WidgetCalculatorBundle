@@ -3,10 +3,13 @@
 namespace Victoire\Widget\CalculatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Victoire\Widget\CalculatorBundle\Entity\Variable;
 
 /**
@@ -34,18 +37,19 @@ class VariableType extends AbstractType
                     'label' => 'widget_calculator.form.variable.suffix.label',
                 ]
             )
-            ->add('type', 'choice', [
+            ->add('type', ChoiceType::class, [
                     'label'   => 'widget_calculator.form.variable.choice.label',
                     'choices' => [
-                        Variable::TYPE_NUMBER => 'widget_calculator.form.variable.choice.'.Variable::TYPE_NUMBER.'.label',
-                        Variable::TYPE_TEXT   => 'widget_calculator.form.variable.choice.'.Variable::TYPE_TEXT.'.label',
-                        Variable::TYPE_CHOICE => 'widget_calculator.form.variable.choice.'.Variable::TYPE_CHOICE.'.label',
+                        'widget_calculator.form.variable.choice.'.Variable::TYPE_NUMBER.'.label' => Variable::TYPE_NUMBER,
+                        'widget_calculator.form.variable.choice.'.Variable::TYPE_TEXT.'.label' => Variable::TYPE_TEXT,
+                        'widget_calculator.form.variable.choice.'.Variable::TYPE_CHOICE.'.label' => Variable::TYPE_CHOICE,
                     ],
                     'required' => 'required',
                     'attr'     => [
                         'class'                => 'selector-type',
                         'data-refreshOnChange' => 'true',
                     ],
+                    'choices_as_values' => true
                 ]
             )
             ->add('name', null, [
@@ -56,9 +60,9 @@ class VariableType extends AbstractType
                     ],
                 ]
             )
-            ->add('triggers', 'collection', [
+            ->add('triggers', CollectionType::class, [
                     'label'          => 'widget_calculator.form.variable.triggers.label',
-                    'type'           => 'victoire_widget_form_calculator_trigger',
+                    'entry_type'           => TriggerType::class,
                     'required'       => false,
                     'allow_add'      => true,
                     'allow_delete'   => true,
@@ -89,9 +93,9 @@ class VariableType extends AbstractType
         switch ($type) {
             case Variable::TYPE_CHOICE:
                 $form
-                    ->add('choiceValues', 'collection', [
+                    ->add('choiceValues', CollectionType::class, [
                             'label'          => 'widget_calculator.form.variable.choiceValue.label',
-                            'type'           => 'victoire_widget_form_calculator_choice_value',
+                            'entry_type'           => ChoiceValueType::class,
                             'required'       => false,
                             'allow_add'      => true,
                             'allow_delete'   => true,
@@ -99,7 +103,7 @@ class VariableType extends AbstractType
                             'prototype_name' => '__name_option__',
                         ]
                     )
-                    ->add('radio', 'checkbox', [
+                    ->add('radio', CheckboxType::class, [
                             'label' => 'widget_calculator.form.variable.radio.label',
                         ]
                     );
@@ -113,20 +117,12 @@ class VariableType extends AbstractType
     /**
      * bind to Variable entity.
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Victoire\Widget\CalculatorBundle\Entity\Variable',
+            'data_class' => Variable::class,
         ]);
-    }
-
-    /**
-     * get form name.
-     */
-    public function getName()
-    {
-        return 'victoire_widget_form_calculator_variable';
     }
 }
