@@ -41,7 +41,7 @@ class VariableType extends AbstractType
                     'label'   => 'widget_calculator.form.variable.choice.label',
                     'choices' => [
                         'widget_calculator.form.variable.choice.'.Variable::TYPE_NUMBER.'.label' => Variable::TYPE_NUMBER,
-                        'widget_calculator.form.variable.choice.'.Variable::TYPE_TEXT.'.label' => Variable::TYPE_TEXT,
+                        'widget_calculator.form.variable.choice.'.Variable::TYPE_TEXT.'.label'   => Variable::TYPE_TEXT,
                         'widget_calculator.form.variable.choice.'.Variable::TYPE_CHOICE.'.label' => Variable::TYPE_CHOICE,
                     ],
                     'required' => 'required',
@@ -49,7 +49,7 @@ class VariableType extends AbstractType
                         'class'                => 'selector-type',
                         'data-refreshOnChange' => 'true',
                     ],
-                    'choices_as_values' => true
+                    'choices_as_values' => true,
                 ]
             )
             ->add('name', null, [
@@ -61,13 +61,13 @@ class VariableType extends AbstractType
                 ]
             )
             ->add('triggers', CollectionType::class, [
-                    'label'          => 'widget_calculator.form.variable.triggers.label',
+                    'label'                => 'widget_calculator.form.variable.triggers.label',
                     'entry_type'           => TriggerType::class,
-                    'required'       => false,
-                    'allow_add'      => true,
-                    'allow_delete'   => true,
-                    'by_reference'   => false,
-                    'prototype_name' => '__name_trigger__',
+                    'required'             => false,
+                    'allow_add'            => true,
+                    'allow_delete'         => true,
+                    'by_reference'         => false,
+                    'prototype_name'       => '__name_trigger__',
                 ]
             );
             // manage conditional related type in preset data
@@ -94,13 +94,13 @@ class VariableType extends AbstractType
             case Variable::TYPE_CHOICE:
                 $form
                     ->add('choiceValues', CollectionType::class, [
-                            'label'          => 'widget_calculator.form.variable.choiceValue.label',
+                            'label'                => 'widget_calculator.form.variable.choiceValue.label',
                             'entry_type'           => ChoiceValueType::class,
-                            'required'       => false,
-                            'allow_add'      => true,
-                            'allow_delete'   => true,
-                            'by_reference'   => false,
-                            'prototype_name' => '__name_option__',
+                            'required'             => false,
+                            'allow_add'            => true,
+                            'allow_delete'         => true,
+                            'by_reference'         => false,
+                            'prototype_name'       => '__name_option__',
                         ]
                     )
                     ->add('radio', CheckboxType::class, [
