@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Victoire\Widget\CalculatorBundle\Entity\Trigger;
 
 /**
@@ -41,8 +40,8 @@ class TriggerType extends AbstractType
                         Trigger::COMPARISON_GREATER_OR_EQUAL_TO => Trigger::COMPARISON_GREATER_OR_EQUAL_TO,
                         Trigger::COMPARISON_LESS_OR_EQUAL_TO    => Trigger::COMPARISON_LESS_OR_EQUAL_TO,
                     ],
-                    'required' => 'required',
-                    'choices_as_values' => true
+                    'required'          => 'required',
+                    'choices_as_values' => true,
                 ]
             );
     }
