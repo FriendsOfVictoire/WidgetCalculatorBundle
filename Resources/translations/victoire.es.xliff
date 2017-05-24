@@ -80,12 +80,12 @@
       </trans-unit>
       <trans-unit id="19" resname="widget_calculator.modal.help.content">
         <source>widget_calculator.modal.help.content</source>
-        <target state="new">
+        <target>
         <![CDATA[El algoritmo se basa en las variables, asegúrese de que es funcional.<br>"result" es la variable del resultado.<br>Lista de variables disponibles :<br>]]></target>
       </trans-unit>
-      <trans-unit id="19" resname="widget_calculator.modal.trigger.add.label">
+      <trans-unit id="20" resname="widget_calculator.modal.trigger.add.label">
         <source>widget_calculator.modal.trigger.add.label</source>
-        <target state="new">Añadir un evento</target>
+        <target>Añadir un evento</target>
       </trans-unit>
       <trans-unit id="21" resname="widget_calculator.modal.option.value.add.label">
         <source>widget_calculator.modal.option.value.add.label</source>

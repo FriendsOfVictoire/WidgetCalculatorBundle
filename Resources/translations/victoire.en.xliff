@@ -76,14 +76,14 @@
       </trans-unit>
       <trans-unit id="18" resname="widget_calculator.modal.help.title">
         <source>widget_calculator.modal.help.title</source>
-        <target state="new">Details :</target>
+        <target>Details :</target>
       </trans-unit>
       <trans-unit id="19" resname="widget_calculator.modal.help.content">
         <source>widget_calculator.modal.help.content</source>
-        <target state="new">
+        <target>
         <![CDATA[The algorithm is based on your variables, make sure it is functional.<br> The displayed variable is "result".<br>List of available variables :<br>]]></target>
       </trans-unit>
-      <trans-unit id="19" resname="widget_calculator.modal.trigger.add.label">
+      <trans-unit id="20" resname="widget_calculator.modal.trigger.add.label">
         <source>widget_calculator.modal.trigger.add.label</source>
         <target state="new">Add an event</target>
       </trans-unit>
